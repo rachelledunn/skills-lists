@@ -1,8 +1,8 @@
 # To work on the intermediate problems, set to True
-INTERMEDIATE = False
+INTERMEDIATE = True
 
 # To work on the advanced problems, set to True
-ADVANCED = False
+ADVANCED = True
 
 
 def all_odd(number_list):
@@ -30,7 +30,7 @@ print all_odd([1, 2, 7, -5])
 def all_even(number_list):
     """Return a list of only the even numbers in the input list.
 
-        >>> all_even([])
+        >>> all_even([2, 6, -1, -2])
         [2, 6, -2]
 
         >>> all_even([-1, 3, 5])
@@ -47,7 +47,6 @@ def all_even(number_list):
     return even_list
 
 print all_even([2, 6, -1, -2])
-
 
 
 def print_indeces(my_list):
@@ -114,7 +113,14 @@ def smallest_int(number_list):
 
     """
 
-    return 0
+    if number_list != []:
+        number_list = sorted(number_list)
+        smallest = number_list[0]
+        return smallest
+    else:
+        return None
+
+print smallest_int([])
 
 
 def largest_int(number_list):
@@ -130,7 +136,14 @@ def largest_int(number_list):
 
     """
 
-    return 0
+    if number_list != []:
+        number_list = sorted(number_list)
+        largest = number_list[-1]
+        return largest
+    else:
+        return None
+
+print largest_int([-5, 2, 80, -5, 7])
 
 
 def halvesies(number_list):
@@ -146,7 +159,11 @@ def halvesies(number_list):
 
     """
 
-    return []
+    number_list = [ float(i)/2 for i in number_list ]
+
+    return number_list
+
+print halvesies([2, 6, -2])
 
 
 def word_lengths(word_list):
@@ -157,7 +174,11 @@ def word_lengths(word_list):
 
     """
 
-    return []
+    word_lengths = [ len(i) for i in word_list ]
+
+    return word_lengths
+
+print word_lengths(["hello", "hey", "hello", "spam"])
 
 
 def sum_numbers(number_list):
@@ -176,7 +197,14 @@ def sum_numbers(number_list):
 
     """
 
-    return 0
+    total = 0
+
+    for i in number_list:
+        total = total + i
+
+    return total
+
+print sum_numbers([1, 2, 3, 10])
 
 
 def mult_numbers(number_list):
@@ -197,7 +225,15 @@ def mult_numbers(number_list):
         1
 
     """
-    return 0
+    
+    total = 1
+
+    for i in number_list:
+        total = total * i
+
+    return total
+
+print mult_numbers([10, 20, 0, 50])
 
 
 def join_strings(word_list):
@@ -215,7 +251,14 @@ def join_strings(word_list):
         ''
 
     """
-    return ""
+    
+    new_string = ''
+    for word in word_list:
+        new_string = new_string + word
+
+    return new_string
+
+print join_strings(["spam", "spam", "bacon", "balloonicorn"])
 
 
 def average(number_list):
@@ -227,8 +270,18 @@ def average(number_list):
     There is no defined answer if the list given is empty. It's fine if
     this raises an error when given an empty list.
     """
-    return 0
+    
+    count = 0
+    average = 0
+    for number in number_list:
+        average += number
+        count += 1
 
+    average = float(average) / count
+
+    return average
+
+print average([2, 12, 3])
 
 ##############################################################################
 # END OF SKILLS TEST; YOU CAN STOP HERE.
@@ -248,7 +301,10 @@ def intermediate_join_strings(list_of_words):
     As above, if the list given is empty, it's fine if this function
     raises an error.
     """
-    return ""
+    
+    new_string = ', '.join(list_of_words)
+
+    return new_string
 
 
 def adv_find_unique_long_words(my_string):
@@ -259,7 +315,21 @@ def adv_find_unique_long_words(my_string):
     ['nachos', 'coffee']
 
     """
-    return []
+
+    unique_words = []
+
+    my_string = my_string.replace('.','').replace(',','').split()
+
+    for word in my_string:
+        if len(word) >= 6:
+            if word not in unique_words:
+                unique_words.append(word)
+            else:
+                del unique_words[unique_words.index(word)]
+
+    return unique_words
+
+print adv_find_unique_long_words("I ate popcorn, more popcorn, nachos, kale, and coffee.")
 
 
 ##############################################################################
